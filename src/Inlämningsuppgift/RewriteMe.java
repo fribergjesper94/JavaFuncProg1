@@ -106,7 +106,10 @@ public class RewriteMe {
     //Hur ofta förekommer ett visst svarsalternativ, givet som inparameter, i databasen
     public int getAnswerCandidateFrequncy(String answerCandidate) {
 
-        return (int) questions.stream().filter(s -> s.getAllAnswers().contains(answerCandidate)).count();
+        return (int) questions
+                .stream()
+                .filter(s -> s.getAllAnswers().contains(answerCandidate))
+                .count();
     }
 
     //Skapa en Map där kategorierna är nycklar och värdena är en lista
