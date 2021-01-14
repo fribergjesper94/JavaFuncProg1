@@ -114,7 +114,8 @@ public class RewriteMe {
     public Map<Category, List<String>> getQuestionGroupedByCategory() {
 
 
-        return null;
+        return questions.stream()
+                .collect(Collectors.groupingBy(Question::getCategory, Collectors.mapping(Question::getQuestionString, Collectors.toList())));
     }
 
     //Skapa en funktion som hittar det svarsalternativ som har flest bokstäver, i en kategori, given som inparameter
@@ -122,7 +123,10 @@ public class RewriteMe {
     public String getLongestLettercountAnwerInAGivenCategory(Category c) {
 
 
-        return null;
+        return questions.stream()
+                .filter(s -> s.getCategory().equals(c))
+                .flatMap(val -> val.answers.stream())
+                .reduce("", (word1, word2) -> word1.length() > word2.length() ? word1 : word2);
 
 
     }
